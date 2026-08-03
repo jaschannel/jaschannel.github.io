@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="구자현의 자작곡을 모아둔 라이브러리입니다.">
+    <meta name="keywords" content="자작곡, 기타, 음악, 구자현">
+    <meta name="author" content="구자현">
+    <meta name="theme-color" content="#0b1020">
+    <title>자작곡 라이브러리</title>
+    <link rel="preload" href="./fonts/Batang_Regular.woff" as="font" type="font/woff" crossorigin>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <a class="skip-link" href="#main-content">본문으로 건너뛰기</a>
+
+    <div class="site-shell">
+        <header class="site-header">
+            <div class="page-container">
+                <p class="site-eyebrow" aria-hidden="true">ORIGINAL MUSIC ARCHIVE</p>
+                <h1 class="site-title">자작곡 라이브러리</h1>
+            </div>
+        </header>
+
+        <main id="main-content" class="site-main page-container" tabindex="-1">
+            <section class="intro-panel" aria-labelledby="intro-heading">
+                <h2 id="intro-heading" class="visually-hidden">제작자 소개</h2>
+            </section>
+            <section class="song-list" aria-labelledby="song-list-heading" aria-live="polite" aria-atomic="false" aria-busy="true">
+                <h2 id="song-list-heading" class="visually-hidden">자작곡 목록</h2>
+            </section>
+        </main>
+
+        <footer class="site-footer">
+            <div class="page-container">
+                <small>© 2026 Gu Ja Hyun</small>
+            </div>
+        </footer>
+    </div>
+
+    <!-- JavaScript가 제작자 소개 데이터를 렌더링할 때 사용하는 템플릿입니다. -->
+    <template id="intro-template">
+        <article class="song-card intro-card fade" aria-labelledby="intro-card-title">
+            <button class="panel-header js-toggle" type="button" aria-expanded="false">
+                <span id="intro-card-title" class="song-title">제작자 소개</span>
+                <span class="toggle-icon" aria-hidden="true">▼</span>
+            </button>
+            <div class="panel-body" hidden>
+                <p class="intro-text js-intro-text"></p>
+            </div>
+        </article>
+    </template>
+
+    <!-- JavaScript가 songs.json의 각 곡 데이터를 렌더링할 때 사용하는 템플릿입니다. -->
+    <template id="song-template">
+        <article class="song-card fade">
+            <header class="song-card-header">
+                <button class="panel-header js-toggle" type="button" aria-expanded="false">
+                    <span class="song-meta">
+                        <span class="song-title js-title"></span>
+                        <span class="song-credit">
+                            작사 · <span class="js-lyricist"></span><br>
+                            작곡 · <span class="js-composer"></span>
+                        </span>
+                    </span>
+                    <span class="toggle-icon" aria-hidden="true">▼</span>
+                </button>
+                <a class="youtube-link js-youtube" target="_blank" rel="noopener noreferrer" aria-label="YouTube에서 곡 듣기, 새 탭에서 열림">
+                    <img src="./icons/youtube.svg" width="24" height="24" alt="">
+                </a>
+            </header>
+            <section class="panel-body" hidden>
+                <button class="story-button js-story-toggle" type="button" aria-expanded="false">
+                    <span>제작 배경</span>
+                    <span class="story-toggle-icon" aria-hidden="true">＋</span>
+                </button>
+                <div class="story" hidden>
+                    <p class="js-story"></p>
+                </div>
+                <div class="lyrics js-lyrics"></div>
+            </section>
+        </article>
+    </template>
+
+    <!-- 데이터는 정상이나 표시할 곡이 없을 때 사용하는 상태 템플릿입니다. -->
+    <template id="empty-state-template">
+        <p class="library-message" role="status">등록된 곡이 아직 없습니다.</p>
+    </template>
+
+    <script type="module" src="./js/app.js"></script>
+</body>
+</html>
